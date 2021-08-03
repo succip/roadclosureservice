@@ -2,6 +2,8 @@ import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import Sketch from "@arcgis/core/widgets/Sketch";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
+import createGeoJSON from "./utils/CreateGeoJSON";
+import { arcgisToGeoJSON } from "@terraformer/arcgis";
 import { MAP_CENTER } from "./Constants/map";
 import "./style.css";
 
@@ -30,6 +32,7 @@ view.when(() => {
 
   sketch.on("create", async (event) => {
     if (event.state === "complete") {
+      const gj = await createGeoJSON(event.graphic.geometry);
     }
   });
 });
