@@ -8,6 +8,6 @@ export default class RoadClosureSketch extends Sketch {
       view,
       layer,
     });
-    this.availableCreateTools = ["polyline", "point"];
+    this.availableCreateTools = ["polyline", "point", "polygon"];
   }
 }
