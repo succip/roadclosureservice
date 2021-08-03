@@ -30,8 +30,6 @@ view.when(() => {
 
   sketch.on("create", async (event) => {
     if (event.state === "complete") {
-      const jsonGeometry = event.graphic.geometry.toJSON();
-      console.log(jsonGeometry);
     }
   });
 });
