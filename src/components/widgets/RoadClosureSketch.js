@@ -1,11 +1,13 @@
 import Sketch from "@arcgis/core/widgets/Sketch";
+import SketchViewModel from "@arcgis/core/widgets/Sketch/SketchViewModel";
 
 export default class RoadClosureSketch extends Sketch {
   constructor({ view, layer }) {
-    super({
+    super();
+    this.viewModel = new SketchViewModel({
       view,
       layer,
     });
-    this.availableCreateTools = ["point"];
+    this.availableCreateTools = ["polyline", "point"];
   }
 }

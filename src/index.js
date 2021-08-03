@@ -2,9 +2,8 @@ import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import RoadClosureSketch from "./components/widgets/RoadClosureSketch";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
-import { MAP_CENTER } from "./Constants/map";
+import { MAP_CENTER } from "./constants/map";
 import "./style.css";
-import Sketch from "@arcgis/core/widgets/Sketch";
 
 let gl = new GraphicsLayer();
 
@@ -22,9 +21,8 @@ const view = new MapView({
 
 view.when(() => {
   const rsSketch = new RoadClosureSketch({
-    view: view,
+    view,
     layer: gl,
   });
-
   view.ui.add(rsSketch, "top-right");
 });
