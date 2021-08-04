@@ -16,6 +16,9 @@ export default class RoadClosureSketch extends Sketch {
         type: "simple-fill",
         style: "forward-diagonal",
       },
+      snappingOptions: {
+        enabled: true,
+      },
     });
     this.availableCreateTools = ["polyline", "polygon"];
   }

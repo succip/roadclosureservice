@@ -27,12 +27,10 @@ view.when(() => {
     layer: gl,
   });
 
-  rsSketch.on("create", (event) => {
-    if (event.state === "complete") {
-      collectGeometries(gl);
-    }
-  });
-
   view.ui.add("controlDiv", "bottom-right");
   view.ui.add(rsSketch, "top-right");
+
+  document.querySelector("#testButton").addEventListener("click", () => {
+    collectGeometries(gl);
+  });
 });
