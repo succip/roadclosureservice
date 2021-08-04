@@ -20,6 +20,12 @@ export default class RoadClosureSketch extends Sketch {
         enabled: true,
       },
     });
-    this.availableCreateTools = ["polyline", "polygon"];
+    this.availableCreateTools = ["polyline", "polygon", "rectangle"];
+    this.visibleElements = {
+      selectionTools: {
+        "lasso-selection": false,
+        "rectangle-selection": false,
+      },
+    };
   }
 }
