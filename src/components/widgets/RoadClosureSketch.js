@@ -7,7 +7,16 @@ export default class RoadClosureSketch extends Sketch {
     this.viewModel = new SketchViewModel({
       view,
       layer,
+      polylineSymbol: {
+        type: "simple-line",
+        style: "short-dash",
+        width: 3,
+      },
+      polygonSymbol: {
+        type: "simple-fill",
+        style: "forward-diagonal",
+      },
     });
-    this.availableCreateTools = ["polyline", "point", "polygon"];
+    this.availableCreateTools = ["polyline", "polygon"];
   }
 }

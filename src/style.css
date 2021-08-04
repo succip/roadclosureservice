@@ -7,3 +7,9 @@ body,
   height: 100%;
   width: 100%;
 }
+
+#controlDiv {
+  padding: 1em;
+  background-color: white;
+  border: 3px solid black;
+}

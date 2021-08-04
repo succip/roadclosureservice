@@ -2,7 +2,9 @@ import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import RoadClosureSketch from "./components/widgets/RoadClosureSketch";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
+import collectGeometries from "./utils/collectGeometries";
 import { MAP_CENTER } from "./constants/map";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 
 let gl = new GraphicsLayer();
@@ -24,5 +26,13 @@ view.when(() => {
     view,
     layer: gl,
   });
+
+  rsSketch.on("create", (event) => {
+    if (event.state === "complete") {
+      collectGeometries(gl);
+    }
+  });
+
+  view.ui.add("controlDiv", "bottom-right");
   view.ui.add(rsSketch, "top-right");
 });
