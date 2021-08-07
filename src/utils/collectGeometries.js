@@ -3,6 +3,13 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 let lines = [];
 let polygons = [];
 
+const fields = [
+  {
+    name: "ObjectID",
+    type: "oid",
+  },
+];
+
 export default (gLayer) => {
   gLayer.graphics.items.map((item) => {
     if (item.geometry.type === "polyline") {
@@ -14,21 +21,11 @@ export default (gLayer) => {
 
   let lineFeatureLayer = new FeatureLayer({
     source: lines,
-    fields: [
-      {
-        name: "ObjectID",
-        type: "oid",
-      },
-    ],
+    fields,
   });
 
   let polygonFeatureLayer = new FeatureLayer({
     source: polygons,
-    fields: [
-      {
-        name: "ObjectID",
-        type: "oid",
-      },
-    ],
+    fields,
   });
 };
