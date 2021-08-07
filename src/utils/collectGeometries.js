@@ -31,7 +31,4 @@ export default (gLayer) => {
       },
     ],
   });
-
-  console.log("lines", lineFeatureLayer);
-  console.log("polygons", polygonFeatureLayer);
 };
