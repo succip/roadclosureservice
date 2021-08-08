@@ -1,4 +1,5 @@
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+import convertToGeoJSON from "./convertToGeoJSON";
 
 let lines = [];
 let polygons = [];
@@ -27,5 +28,9 @@ export default (gLayer) => {
   let polygonFeatureLayer = new FeatureLayer({
     source: polygons,
     fields,
+  });
+
+  convertToGeoJSON(lineFeatureLayer.source.items[0].geometry).then((feature) => {
+    console.log(feature);
   });
 };
