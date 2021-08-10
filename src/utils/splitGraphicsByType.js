@@ -1,36 +1,32 @@
-import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import convertToGeoJSON from "./convertToGeoJSON";
+import mergeGeoJSON from "./mergeGeoJSON";
 
 let lines = [];
 let polygons = [];
 
-const fields = [
-  {
-    name: "ObjectID",
-    type: "oid",
-  },
-];
-
 export default (gLayer) => {
-  gLayer.graphics.items.map((item) => {
+  gLayer.graphics.items.map(async (item) => {
+    const geoJSONItem = await convertToGeoJSON(item.geometry);
     if (item.geometry.type === "polyline") {
-      lines.push(item);
+      lines.push({
+        type: "Feature",
+        geometry: geoJSONItem,
+        properties: {},
+      });
     } else {
-      polygons.push(item);
+      polygons.push({
+        type: "Feature",
+        geometry: geoJSONItem,
+        properties: {},
+      });
     }
   });
 
-  let lineFeatureLayer = new FeatureLayer({
-    source: lines,
-    fields,
-  });
+  const lineGeoJSON = mergeGeoJSON(lines);
+  const polygonGeoJSON = mergeGeoJSON(polygons);
 
-  let polygonFeatureLayer = new FeatureLayer({
-    source: polygons,
-    fields,
-  });
-
-  convertToGeoJSON(lineFeatureLayer.source.items[0].geometry).then((feature) => {
-    console.log(feature);
-  });
+  console.log("Lines-----");
+  console.log(lineGeoJSON);
+  console.log("Polygons-----");
+  console.log(polygonGeoJSON);
 };
