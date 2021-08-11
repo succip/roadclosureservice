@@ -32,7 +32,5 @@ view.when(() => {
 
   document.querySelector("#testButton").addEventListener("click", () => {
     const pkg = splitGraphicsByType(gl);
-    console.log("lines", pkg.linesGeoJSON);
-    console.log("polygons", pkg.polygonsGeoJSON);
   });
 });
