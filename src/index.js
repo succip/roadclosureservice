@@ -31,6 +31,8 @@ view.when(() => {
   view.ui.add(rsSketch, "top-right");
 
   document.querySelector("#testButton").addEventListener("click", () => {
-    splitGraphicsByType(gl);
+    const pkg = splitGraphicsByType(gl);
+    console.log("lines", pkg.linesGeoJSON);
+    console.log("polygons", pkg.polygonsGeoJSON);
   });
 });

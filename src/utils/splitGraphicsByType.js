@@ -22,11 +22,8 @@ export default (gLayer) => {
     }
   });
 
-  const lineGeoJSON = mergeGeoJSON(lines);
-  const polygonGeoJSON = mergeGeoJSON(polygons);
-
-  console.log("Lines-----");
-  console.log(lineGeoJSON);
-  console.log("Polygons-----");
-  console.log(polygonGeoJSON);
+  return {
+    linesGeoJSON: mergeGeoJSON(lines),
+    polygonsGeoJSON: mergeGeoJSON(polygons),
+  };
 };
