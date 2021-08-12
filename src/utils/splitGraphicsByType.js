@@ -1,13 +1,12 @@
 import convertToGeoJSON from "./convertToGeoJSON";
 import mergeGeoJSON from "./mergeGeoJSON";
 
-export default (gLayer) => {
+export default async (gLayer) => {
   let lines = [];
   let polygons = [];
-  gLayer.graphics.items.map(async (item) => {
-    console.log("a");
+
+  for (const item of gLayer.graphics.items) {
     const geoJSONItem = await convertToGeoJSON(item.geometry);
-    console.log("b");
     if (item.geometry.type === "polyline") {
       lines.push({
         type: "Feature",
@@ -21,9 +20,7 @@ export default (gLayer) => {
         properties: {},
       });
     }
-  });
-
-  console.log("c");
+  }
 
   return {
     linesGeoJSON: mergeGeoJSON(lines),

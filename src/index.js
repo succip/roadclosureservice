@@ -3,10 +3,10 @@ import MapView from "@arcgis/core/views/MapView";
 import RoadClosureSketch from "./components/widgets/RoadClosureSketch";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import splitGraphicsByType from "./utils/splitGraphicsByType";
-import downloadGeoJSON from "./utils/downloadGeoJSON";
 import { MAP_CENTER } from "./constants/map";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
+import downloadGeoJSON from "./utils/downloadGeoJSON";
 
 let gl = new GraphicsLayer();
 
@@ -31,11 +31,9 @@ view.when(() => {
   view.ui.add("controlDiv", "bottom-right");
   view.ui.add(rsSketch, "top-right");
 
-  document.querySelector("#testButton").addEventListener("click", () => {
-    const pkg = splitGraphicsByType(gl);
-    // console.log(pkg.polygonsGeoJSON);
-    // console.log(JSON.stringify(pkg.polygonsGeoJSON));
-    // downloadGeoJSON(pkg.linesGeoJSON, "lines");
-    // downloadGeoJSON(pkg.polygonsGeoJSON, "polygons");
+  document.querySelector("#testButton").addEventListener("click", async () => {
+    const pkg = await splitGraphicsByType(gl);
+    downloadGeoJSON(pkg.linesGeoJSON, "lines");
+    downloadGeoJSON(pkg.polygonsGeoJSON, "polygons");
   });
 });
