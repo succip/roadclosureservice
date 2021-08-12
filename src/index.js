@@ -33,6 +33,9 @@ view.when(() => {
 
   document.querySelector("#testButton").addEventListener("click", () => {
     const pkg = splitGraphicsByType(gl);
-    downloadGeoJSON(pkg.polygonsGeoJSON);
+    // console.log(pkg.polygonsGeoJSON);
+    // console.log(JSON.stringify(pkg.polygonsGeoJSON));
+    // downloadGeoJSON(pkg.linesGeoJSON, "lines");
+    // downloadGeoJSON(pkg.polygonsGeoJSON, "polygons");
   });
 });
